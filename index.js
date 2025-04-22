@@ -1,6 +1,3 @@
-// order-coffee/index.js
-
-// --- 3, 4, 5 ------------
 function getCorrectDeclension(number) {
   let strNumber = String(number);
   if (
@@ -37,7 +34,6 @@ close.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
-// При нажатии "Готово" — показать модалку и заполнить заголовок и таблицу
 const submitButtons = document.querySelectorAll(".submit-button");
 for (const button of submitButtons) {
   button.addEventListener("click", (e) => {
@@ -55,10 +51,9 @@ for (const button of submitButtons) {
   });
 }
 
-// Функция сборки таблицы заказа
 function buildOrderTable() {
   const beverages = document.querySelectorAll("fieldset.beverage");
-  // Очищаем старую таблицу
+
   tableContainer.innerHTML = "";
 
   const table = document.createElement("table");
@@ -76,18 +71,17 @@ function buildOrderTable() {
   const tbody = table.querySelector("tbody");
 
   beverages.forEach((bev) => {
-    // Название напитка
     const drinkName =
       bev.querySelector("select").selectedOptions[0].textContent;
-    // Вид молока
+
     const milkRadio = bev.querySelector('input[type="radio"]:checked');
     const milkText = milkRadio ? milkRadio.nextElementSibling.textContent : "";
-    // Дополнительные опции
+
     const opts = Array.from(
       bev.querySelectorAll('input[type="checkbox"]:checked')
     ).map((cb) => cb.nextElementSibling.textContent);
     const optionsText = opts.join(", ");
-    // Пожелания из textarea
+
     const wishText = bev.querySelector(".wish-text").value;
 
     const row = document.createElement("tr");
@@ -103,7 +97,6 @@ function buildOrderTable() {
   tableContainer.appendChild(table);
 }
 
-// Обработчик финального оформления и проверки времени
 confirmButton.addEventListener("click", () => {
   const timeVal = timeInput.value;
   if (!timeVal) {
@@ -122,16 +115,13 @@ confirmButton.addEventListener("click", () => {
       "Мы не умеем перемещаться во времени. Выберите время позже, чем текущее"
     );
   } else {
-    // Закрываем модалку
     modalOverlay.style.display = "none";
     modal.style.display = "none";
-    // Сбрасываем красную рамку для будущих открытий
+
     timeInput.style.border = "";
   }
 });
 
-// ---------------------------------------------
-// Добавление нового поля «Напиток»
 const beverage_form = document.querySelector("fieldset.beverage");
 const addButton = document.querySelector(".add-button");
 
@@ -149,7 +139,7 @@ function attachWishListener(bev) {
 
   textarea.addEventListener("input", () => {
     const txt = textarea.value;
-    // Оборачиваем ключевые слова в <b>
+
     let processed = txt;
     const f = array.filter((word) => txt.includes(word));
     if (f.length != 0) {
@@ -159,13 +149,11 @@ function attachWishListener(bev) {
   });
 }
 
-// initial attach
 attachWishListener(beverage_form);
 
 function listener() {
   const beverage = beverage_form.cloneNode(true);
 
-  // Обновляем номер напитка
   const counts = document.querySelectorAll(".beverage-count");
   let maxNumber = 0;
   counts.forEach((el) => {
@@ -179,16 +167,13 @@ function listener() {
   beverage.querySelector(".beverage-count").textContent =
     "Напиток №" + newNumber;
 
-  // Сброс выбора
   beverage.querySelector("select").value = "capuccino";
 
-  // Уникальные имена для радиокнопок
   const radioName = "milk" + newNumber;
   beverage.querySelectorAll('input[type="radio"]').forEach((input) => {
     input.name = radioName;
   });
 
-  // Кнопка удаления
   const closeBtn = document.createElement("img");
   closeBtn.src = "https://www.svgrepo.com/show/505858/cross.svg";
   closeBtn.style.cursor = "pointer";
@@ -203,11 +188,9 @@ function listener() {
   const header = beverage.querySelector(".beverage-count");
   header.appendChild(closeBtn);
 
-  // Вставляем перед кнопкой «Готово»
   const submitWrapper = document.querySelector(".submit-button").parentNode;
   submitWrapper.parentNode.insertBefore(beverage, submitWrapper);
 
-  // Привязываем обработчик textarea в новом блоке
   attachWishListener(beverage);
 }
 
