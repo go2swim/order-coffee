@@ -1,3 +1,4 @@
+<!-- order-coffee/index.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,7 +56,17 @@
             <span>корицу</span>
           </label>
         </div>
+
+        <!-- Новое текстовое поле пожеланий -->
+        <div class="field">
+          <label class="field">
+            <span class="label-text">И еще вот что</span>
+            <textarea class="wish-text"></textarea>
+          </label>
+          <div class="wish-preview"></div>
+        </div>
       </fieldset>
+
       <div>
         <button type="button" class="add-button">+ Добавить напиток</button>
       </div>
@@ -72,6 +83,20 @@
         <div class="modal__content">
           <div class="modal__title">Заказ принят!</div>
           <div class="modal__text"></div>
+
+          <!-- Здесь будет таблица заказа -->
+          <div class="modal__table-container"></div>
+
+          <!-- Выбор времени заказа -->
+          <div class="modal__time-container" style="margin-top: 15px">
+            <label>
+              Выберите время заказа:
+              <input type="time" class="order-time" />
+            </label>
+          </div>
+
+          <!-- Кнопка окончательного оформления -->
+          <button type="button" class="confirm-button">Оформить</button>
         </div>
       </div>
     </div>

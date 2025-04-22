@@ -1,3 +1,4 @@
+/* order-coffee/styles.css */
 .beverage {
   border: 1px solid #eee;
   margin: 15px 0;
@@ -26,6 +27,12 @@
 .checkbox-field {
   margin: 5px 0;
   display: block;
+}
+
+/* Стили превью пожеланий */
+.wish-preview {
+  margin-top: 5px;
+  font-style: italic;
 }
 
 .add-button {
@@ -86,4 +93,32 @@
   top: 0;
   left: 0;
   display: none;
+}
+
+/* Стили таблицы в модалке */
+.modal__table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.modal__table-container th,
+.modal__table-container td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.modal__time-container input[type="time"] {
+  margin-left: 8px;
+  padding: 2px 4px;
+  font-size: 14px;
+}
+
+.confirm-button {
+  margin-top: 15px;
+  padding: 6px 12px;
+  font-size: 14px;
+  border: 2px solid green;
+  border-radius: 5px;
+  cursor: pointer;
 }
